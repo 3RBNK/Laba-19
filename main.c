@@ -1,9 +1,10 @@
 #include "algorithms/task/matrix_transposition.h"
+#include "algorithms/task/convert_float.h"
 
 
 int main() {
-    generate_random_matrix_file("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_1.txt", 2);
-    transpose_matrix_in_file("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_1.txt");
+    generate_float("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_2.txt", 6);
+    convert_float("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_2.txt");
 
     return 0;
 }

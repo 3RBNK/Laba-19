@@ -12,10 +12,10 @@
 #include "../../data_structures/matrix/matrix.h"
 
 
-void generate_random_matrix_file(const char* file_name, size_t n) {
+void generate_random_matrix_file(const char* filename, size_t n) {
     srand(time(NULL));
 
-    FILE* file = fopen(file_name, "w");
+    FILE* file = fopen(filename, "w");
     fprintf(file, "%lld\n", n);
 
     for (size_t i = 0; i < n; i++) {
@@ -30,8 +30,8 @@ void generate_random_matrix_file(const char* file_name, size_t n) {
 }
 
 
-void transpose_matrix_in_file(const char* file_name) {
-    FILE* file = fopen(file_name, "r");
+void transpose_matrix_in_file(const char* filename) {
+    FILE* file = fopen(filename, "r");
 
     size_t n;
     fscanf(file, "%lld", &n);
@@ -44,7 +44,7 @@ void transpose_matrix_in_file(const char* file_name) {
 
     fclose(file);
 
-    file = fopen(file_name, "w");
+    file = fopen(filename, "w");
     fprintf(file, "%d\n", n);
 
     for (size_t i = 0; i < n; i++) {
