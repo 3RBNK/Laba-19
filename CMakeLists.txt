@@ -8,4 +8,5 @@ add_executable(code main.c
         data_structures/matrix/matrix.c
         algorithms/task/matrix_transposition.h
         algorithms/task/convert_float.h
+        algorithms/task/evaluate_expression.h
 )
