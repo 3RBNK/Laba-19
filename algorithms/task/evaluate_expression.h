@@ -27,7 +27,7 @@ void generate_expression(const char *file_name) {
     bool one_operation = rand() % 2;
 
     if (one_operation)
-        fprintf(file, "%d %c %d", x1, op1, x2);
+        fprintf(file, "(%d %c %d)", x1, op1, x2);
     else
         fprintf(file, "(%d %c %d) %c %d", x1, op1, x2, op2, x3);
 
