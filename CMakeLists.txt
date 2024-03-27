@@ -15,5 +15,6 @@ add_executable(code main.c
         algorithms/task/filter_word.h
         data_structures/string/task/print_revers_ordered.h
         data_structures/string/task/find_anagram_words.h
+        algorithms/task/leave_longest_word.h
 )
 
