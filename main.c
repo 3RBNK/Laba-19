@@ -6,8 +6,8 @@
 
 
 int main() {
-//    generate_text_file("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_5.txt", 3, 3, 5);
-//    leave_longest_word("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_5.txt");
+    generate_text_file("/home/lenovo/Документы/stock/laba/op/laba_op_19/task_5.txt", 3, 3, 5);
+    leave_longest_word("/home/lenovo/Документы/stock/laba/op/laba_op_19/task_5.txt");
 
     return 0;
 }

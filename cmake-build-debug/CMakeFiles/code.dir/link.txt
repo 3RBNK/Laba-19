@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/code.dir/main.c.o CMakeFiles/code.dir/data_structures/matrix/matrix.c.o CMakeFiles/code.dir/data_structures/string/string_.c.o -o code 

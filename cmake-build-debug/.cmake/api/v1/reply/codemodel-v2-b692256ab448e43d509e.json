@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.26"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "code::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-code-Debug-6881191b02c244074e75.json",
+					"jsonFile" : "target-code-Debug-c980037c3fb99b245b6e.json",
 					"name" : "code",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/\u043c\u0443\u0441\u043e\u0440/\u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u043a\u0438/\u043e\u043f/laba_op_19/code/cmake-build-debug",
-		"source" : "D:/\u043c\u0443\u0441\u043e\u0440/\u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u043a\u0438/\u043e\u043f/laba_op_19/code"
+		"build" : "/home/lenovo/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/stock/laba/op/Laba-19/cmake-build-debug",
+		"source" : "/home/lenovo/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/stock/laba/op/Laba-19"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 5
+		"minor" : 6
 	}
 }
