@@ -15,7 +15,7 @@ void generate_non_symmetric_matrix(const char* filename) {
 
     FILE* file = fopen(filename, "wb");
 
-    int n = rand() % 3 + 2;
+    int n = rand() % 2 + 2;
     fwrite(&n, sizeof(int), 1, file);
 
     int amount_matrix = rand() % 3 + 1;
@@ -76,7 +76,7 @@ void transpose_non_symmetric_matrix(const char* filename) {
         size_t read_count = fread(matrix, sizeof(int), n * n, file);
         if (read_count != n * n) {
             if (feof(file)) {
-                break; // Достигнут конец файла
+                break;
             } else {
                 printf("Ошибка при чтении матрицы.\n");
                 break;

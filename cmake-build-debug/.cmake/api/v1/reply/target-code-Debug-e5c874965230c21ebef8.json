@@ -114,7 +114,8 @@
 				13,
 				14,
 				15,
-				16
+				16,
+				17
 			]
 		}
 	],
@@ -207,6 +208,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "algorithms/task/transpose_non_symmetric_matrix.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "algorithms/task/get_best_team.h",
 			"sourceGroupIndex" : 1
 		}
 	],

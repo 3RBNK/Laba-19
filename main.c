@@ -5,12 +5,17 @@
 #include "algorithms/task/leave_longest_word.h"
 #include "algorithms/task/rearrange_numbers.h"
 #include "algorithms/task/transpose_non_symmetric_matrix.h"
+#include "algorithms/task/get_best_team.h"
+
 
 int main() {
-    generate_non_symmetric_matrix("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8.txt");
-    print_bin_file_matrix("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8.txt");
-    transpose_non_symmetric_matrix("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8.txt");
-    print_bin_file_matrix("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8.txt");
+    generate_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt",4);
+    print_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt");
+
+    printf("\n");
+
+    get_best_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt", 4);
+    print_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt");
 
     return 0;
 }
