@@ -25,5 +25,6 @@ add_executable(code main.c
         data_structures/vector/vector.h
         data_structures/vector/vector.c
         algorithms/task/rearrange_numbers.h
+        algorithms/task/transpose_non_symmetric_matrix.h
 )
 
