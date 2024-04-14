@@ -7,6 +7,9 @@ add_executable(code main.c
         data_structures/vector/vector.h
         data_structures/vector/vector.c
 
+        data_structures/vectorVoid/vectorVoid.h
+        data_structures/vectorVoid/vectorVoid.c
+
         data_structures/matrix/matrix.h
         data_structures/matrix/matrix.c
 
@@ -27,5 +30,7 @@ add_executable(code main.c
         algorithms/task/rearrange_numbers.h
         algorithms/task/transpose_non_symmetric_matrix.h
         algorithms/task/get_best_team.h
+        algorithms/task/update_product.h
+
 )
 

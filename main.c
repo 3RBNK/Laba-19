@@ -6,16 +6,17 @@
 #include "algorithms/task/rearrange_numbers.h"
 #include "algorithms/task/transpose_non_symmetric_matrix.h"
 #include "algorithms/task/get_best_team.h"
+#include "algorithms/task/update_product.h"
 
 
 int main() {
-    generate_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt",4);
-    print_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt");
+    generate_product_and_order("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_1.txt", "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_2.txt");
+    print_product_and_order("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_1.txt", "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_2.txt");
 
     printf("\n");
 
-    get_best_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt", 4);
-    print_team("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9.txt");
+    update_product("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_1.txt", "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_2.txt");
+    print_product_and_order("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_1.txt", "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_10_2.txt");
 
     return 0;
 }
