@@ -31,6 +31,7 @@ add_executable(code main.c
         algorithms/task/transpose_non_symmetric_matrix.h
         algorithms/task/get_best_team.h
         algorithms/task/update_product.h
+        algorithms/task/remove_true_polynomial.h
 
 )
 
