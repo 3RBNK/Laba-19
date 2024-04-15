@@ -13,6 +13,7 @@
 int main() {
     test_matrix_transpose();
     test_convert_float();
+    test_evaluate();
 
     return 0;
 }

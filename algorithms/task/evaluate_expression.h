@@ -109,4 +109,70 @@ void evaluate_expression(const char* filename) {
 }
 
 
+void test_evaluate_expression_1_empty_file() {
+    /* если файл пуст, то будет выведено сообщение unknown operation */
+}
+
+
+void test_evaluate_expression_2_two_operand() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_3_test_2.txt";
+
+    char expression[] = "(2 * 3)";
+    FILE* file = fopen(filename, "w");
+
+    fputs(expression, file);
+
+    fclose(file);
+
+
+    evaluate_expression("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_3_test_2.txt");
+
+
+    file = fopen(filename, "r");
+
+    char data[100] = "";
+    fgets(data, sizeof(data), file);
+
+    fclose(file);
+
+    char check[] = "(2 * 3) = 6.00 ";
+
+    assert(strcmp_(data, check));
+}
+
+
+void test_evaluate_expression_3_three_operand() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_3_test_3.txt";
+
+    char expression[] = "(2 * 3) + 3";
+    FILE* file = fopen(filename, "w");
+
+    fputs(expression, file);
+
+    fclose(file);
+
+
+    evaluate_expression("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_3_test_3.txt");
+
+
+    file = fopen(filename, "r");
+
+    char data[100] = "";
+    fgets(data, sizeof(data), file);
+
+    fclose(file);
+
+    char check[] = "(2 * 3) + 3 = 9.00 ";
+
+    assert(strcmp_(data, check));
+}
+
+
+void test_evaluate() {
+    test_evaluate_expression_1_empty_file();
+    test_evaluate_expression_2_two_operand();
+    test_evaluate_expression_3_three_operand();
+}
+
+
 #endif //CODE_EVALUATE_EXPRESSION_H
