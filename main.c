@@ -11,13 +11,7 @@
 
 
 int main() {
-    generate_polynomial("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_6.txt");
-    print_polynomial("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_6.txt");
-
-    printf("\n");
-
-    remove_true_polynomial("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_6.txt", 1.0);
-    print_polynomial("C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_6.txt");
+    test_matrix_transpose();
 
     return 0;
 }

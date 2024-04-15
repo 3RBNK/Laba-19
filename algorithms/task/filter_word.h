@@ -39,6 +39,10 @@ bool letters_belong_word(word_descriptor sub_word, word_descriptor word) {
 
 void generate_string(const char* filename, char* source_string) {
     FILE* file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     size_t string_length = strlen_(source_string);
 
@@ -51,6 +55,10 @@ void generate_string(const char* filename, char* source_string) {
 
 void filter_word(const char* filename, char* source_word) {
     FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     fseek(file, 0, SEEK_END);
     size_t length = ftell(file);
@@ -75,6 +83,10 @@ void filter_word(const char* filename, char* source_word) {
 
 
     file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     for (size_t i = 0; i < words.size; i++) {
         if (letters_belong_word(word, words.words[i])) {

@@ -19,6 +19,10 @@ void generate_text_file(const char* filename, int lines, int word, int max_word_
     srand(time(NULL));
 
     FILE* file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     for (int i = 0; i < lines; i++) {
         for (int j = 0; j < word; j++) {
@@ -36,6 +40,10 @@ void generate_text_file(const char* filename, int lines, int word, int max_word_
 
 void leave_longest_word(const char* filename) {
     FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     char buff[MAX_LINE_SIZE] = "";
 
@@ -66,6 +74,10 @@ void leave_longest_word(const char* filename) {
     fclose(file);
 
     file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     for (size_t i = 0; i < _bag.size; i += amount_word_in_line) {
         word_descriptor word_max_length = _bag.words[i];
@@ -91,10 +103,6 @@ void leave_longest_word(const char* filename) {
 
     fclose(file);
 }
-
-
-
-
 
 
 #endif //CODE_LEAVE_LONGEST_WORD_H

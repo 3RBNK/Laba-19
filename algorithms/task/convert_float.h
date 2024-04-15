@@ -15,6 +15,11 @@ void generate_float(const char* filename, int n) {
     srand(time(NULL));
 
     FILE* file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
+
     for (size_t i = 0; i < n; i++)
         fprintf(file, "%f ", 10.0 * rand() / RAND_MAX);
 
@@ -24,6 +29,11 @@ void generate_float(const char* filename, int n) {
 
 void convert_float(const char* filename) {
     FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
+
 
     size_t amount_element = 0;
     size_t temp_size = 2;

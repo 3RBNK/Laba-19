@@ -23,6 +23,10 @@ void generate_polynomial(const char* filename) {
     srand(time(NULL));
 
     FILE* file = fopen(filename, "wb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int amount_polynomial = rand() % 5 + 2;
 
@@ -51,6 +55,10 @@ void remove_true_polynomial(const char* filename, double x) {
     vectorVoid v = createVectorV(16, sizeof(monomial));
 
     FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     monomial mono;
     while (fread(&mono, sizeof(monomial), 1, file) == 1)
@@ -60,6 +68,10 @@ void remove_true_polynomial(const char* filename, double x) {
 
 
     file = fopen(filename, "wb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     monomial m;
     vectorVoid temp = createVectorV(8, sizeof(monomial));
@@ -92,6 +104,10 @@ void remove_true_polynomial(const char* filename, double x) {
 
 void print_polynomial(const char* filename) {
     FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     monomial mono;
     while (fread(&mono, sizeof(monomial), 1, file) == 1) {

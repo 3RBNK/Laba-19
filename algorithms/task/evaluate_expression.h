@@ -15,6 +15,10 @@ void generate_expression(const char *file_name) {
     srand(time(NULL));
 
     FILE *file = fopen(file_name, "w");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int x1 = rand() % 10;
     int x2 = rand() % 10;
@@ -37,6 +41,11 @@ void generate_expression(const char *file_name) {
 
 void evaluate_expression(const char* filename) {
     FILE* file = fopen(filename, "r+");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
+
 
     int x1, x2, x3;
     char op1, op2;

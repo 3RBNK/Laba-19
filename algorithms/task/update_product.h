@@ -32,7 +32,16 @@ void generate_product_and_order(const char* filename1, const char* filename2) {
     srand(time(NULL));
 
     FILE* file1 = fopen(filename1, "wb");
+    if (file1 == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
+
     FILE* file2 = fopen(filename2, "wb");
+    if (file2 == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int amount_product = rand() % 15 + 1;
     int amount_order = amount_product % 2 + 1;
@@ -84,6 +93,10 @@ void update_product(const char* filename1, const char* filename2) {
     vectorVoid v2 = createVectorV(16, sizeof(order));
 
     FILE* file1 = fopen(filename1, "rb");
+    if (file1 == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     product pr;
     while (fread(&pr, sizeof(product), 1, file1) == 1)
@@ -93,6 +106,10 @@ void update_product(const char* filename1, const char* filename2) {
 
 
     FILE* file2 = fopen(filename2, "rb");
+    if (file2 == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     order od;
     while (fread(&od, sizeof(order), 1, file2) == 1)
@@ -134,6 +151,10 @@ void print_product_and_order(const char* filename1, const char* filename2) {
     printf("Product: \n");
 
     FILE* file1 = fopen(filename1, "rb");
+    if (file1 == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     product pr;
     while (fread(&pr, sizeof(product), 1, file1) == 1) {
@@ -146,6 +167,10 @@ void print_product_and_order(const char* filename1, const char* filename2) {
     printf("Order: \n");
 
     FILE* file2 = fopen(filename2, "rb");
+    if (file2 == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     order od;
     while (fread(&od, sizeof(order), 1, file2) == 1)

@@ -1,4 +1,3 @@
-
 //
 // Created by lenovo on 12.04.24.
 //
@@ -36,6 +35,10 @@ void generate_team(const char* filename, const int n) {
     srand(time(NULL));
 
     FILE* file = fopen(filename, "wb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     for (int i = 0; i < n; i++) {
         sportsman s;
@@ -63,6 +66,10 @@ void sort_sportsman(sportsman sm[], const int n) {
 
 void get_best_team(const char* filename, const int n) {
     FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     sportsman* team = (sportsman*) malloc(MAX_AMOUNT_SPORTSMAN * sizeof(sportsman));
 
@@ -77,6 +84,10 @@ void get_best_team(const char* filename, const int n) {
 
 
     file = fopen(filename, "wb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     sort_sportsman(team, amount_sportsman);
 
@@ -93,6 +104,10 @@ void get_best_team(const char* filename, const int n) {
 
 void print_team(const char* filename) {
     FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     sportsman s;
     while (fread(&s, sizeof(sportsman), 1, file) == 1) {

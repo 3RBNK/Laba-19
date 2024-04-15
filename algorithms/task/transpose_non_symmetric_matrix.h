@@ -14,6 +14,10 @@ void generate_non_symmetric_matrix(const char* filename) {
     srand(time(NULL));
 
     FILE* file = fopen(filename, "wb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int n = rand() % 2 + 2;
     fwrite(&n, sizeof(int), 1, file);
@@ -98,6 +102,10 @@ void transpose_non_symmetric_matrix(const char* filename) {
 
 void print_bin_file_matrix(const char* filename) {
     FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int n;
     fread(&n, sizeof(int), 1, file);

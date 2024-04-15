@@ -15,6 +15,10 @@ void generate_numbers_array(const char* filename) {
     srand(time(NULL));
 
     FILE* file = fopen(filename, "wb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int amount_numbers = (int) rand() % 10 + 1;
 
@@ -32,6 +36,10 @@ void rearrange_numbers(const char* filename) {
     vector negative_numbers = createVector(2);
 
     FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int current_number;
     while (fread(&current_number, sizeof(int), 1, file) == 1) {
@@ -45,6 +53,10 @@ void rearrange_numbers(const char* filename) {
 
 
     file = fopen(filename, "wb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     for (int i = 0; i < positive_numbers.size; i++)
         fwrite(positive_numbers.data + i, sizeof(int), 1, file);
@@ -60,6 +72,10 @@ void rearrange_numbers(const char* filename) {
 
 void print_numbers_array(const char* filename) {
     FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("reading error\n");
+        exit(1);
+    }
 
     int x;
     while(fread(&x, sizeof(int), 1, file))
