@@ -91,7 +91,9 @@ void test_matrix_transpose_1_one_element_matrix() {
 
     fclose(file);
 
+
     transpose_matrix_in_file(filename);
+
 
     file = fopen(filename, "r");
 

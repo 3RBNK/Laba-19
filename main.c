@@ -12,6 +12,7 @@
 
 int main() {
     test_matrix_transpose();
+    test_convert_float();
 
     return 0;
 }
