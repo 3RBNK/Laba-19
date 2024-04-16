@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #define MAX_LENGTH_STRING 200
 #define MAX_AMOUNT_SPORTSMAN 20
@@ -116,6 +117,86 @@ void print_team(const char* filename) {
     }
 
     fclose(file);
+}
+
+
+void test_get_best_team_1_empty_file() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9_test_1.txt";
+
+    FILE* file = fopen(filename, "wb");
+    fclose(file);
+
+    get_best_team(filename, 0);
+
+    file = fopen(filename, "rb");
+
+    char data[100] = "";
+    fread(data, sizeof(data), 1, file);
+
+    fclose(file);
+
+    assert(strcmp_(data, "") == 0);
+}
+
+
+void test_get_best_team_2_n_more_quantity() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9_test_2.txt";
+
+    FILE* file = fopen(filename, "wb");
+
+    sportsman s1 = {.best_result = 10.3, .name="first"};
+    sportsman s2 = {.best_result = 5.2,  .name="second"};
+
+    fwrite(&s1, sizeof(sportsman), 1, file);
+    fwrite(&s2, sizeof(sportsman), 1, file);
+
+    fclose(file);
+
+    get_best_team(filename, 3);
+
+    file = fopen(filename, "rb");
+
+    sportsman res_s1, res_s2;
+    fread(&res_s1, sizeof(sportsman), 1, file);
+    fread(&res_s2, sizeof(sportsman), 1, file);
+
+    fclose(file);
+
+    assert(strcmp_(s1.name, res_s1.name) == 0 && fabs(s1.best_result - res_s1.best_result) <= 0.001);
+    assert(strcmp_(s2.name, res_s2.name) == 0 && fabs(s2.best_result - res_s2.best_result) <= 0.001);
+}
+
+
+void test_get_best_team_3_n_less_quantity() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_9_test_2.txt";
+
+    FILE* file = fopen(filename, "wb");
+
+    sportsman s1 = {.best_result = 10.3, .name="first"};
+    sportsman s2 = {.best_result = 5.2,  .name="second"};
+
+    fwrite(&s1, sizeof(sportsman), 1, file);
+    fwrite(&s2, sizeof(sportsman), 1, file);
+
+    fclose(file);
+
+    get_best_team(filename, 1);
+
+    file = fopen(filename, "rb");
+
+    sportsman res_s1;
+    fread(&res_s1, sizeof(sportsman), 1, file);
+
+    fclose(file);
+
+    assert(strcmp_(s1.name, res_s1.name) == 0 && fabs(s1.best_result - res_s1.best_result) <= 0.001);
+}
+
+
+void test_get_best_team() {
+    test_get_best_team_1_empty_file();
+    test_get_best_team_2_n_more_quantity();
+    test_get_best_team_3_n_less_quantity();
 }
 
 

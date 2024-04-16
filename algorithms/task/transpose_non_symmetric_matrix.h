@@ -300,18 +300,18 @@ void test_transpose_non_symmetric_matrix_5_mixed_matrix() {
                                                          2, 5, 8,
                                                          3, 6, 9}, 3, 3);
 
-    fwrite(&res_n, sizeof(int), 1, file);
+    fread(&res_n, sizeof(int), 1, file);
 
     matrix res_m1 = get_mem_matrix(res_n, res_n);
     matrix res_m2 = get_mem_matrix(res_n, res_n);
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            fwrite(&res_m1.values[i][j], sizeof(int), 1, file);
+            fread(&res_m1.values[i][j], sizeof(int), 1, file);
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            fwrite(&res_m2.values[i][j], sizeof(int), 1, file);
+            fread(&res_m2.values[i][j], sizeof(int), 1, file);
 
     fclose(file);
 
