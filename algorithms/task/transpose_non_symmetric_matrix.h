@@ -110,6 +110,9 @@ void print_bin_file_matrix(const char* filename) {
     int n;
     fread(&n, sizeof(int), 1, file);
 
+    if (n == 0)
+        return;
+
     while (!feof(file)) {
         int matrix[n][n];
         if (fread(matrix, sizeof(int), n * n, file) != n * n)
@@ -125,6 +128,212 @@ void print_bin_file_matrix(const char* filename) {
     }
 
     fclose(file);
+}
+
+
+void test_transpose_non_symmetric_matrix_1_empty_matrix() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8_test_1.txt";
+
+    int n = 0;
+    FILE* file = fopen(filename, "wb");
+
+    fwrite(&n, sizeof(int), 1, file);
+
+    fclose(file);
+
+
+    file = fopen(filename, "rb");
+
+    int res_n;
+    fread(&res_n, sizeof(int), 1, file);
+
+    fclose(file);
+
+    assert(n == res_n);
+}
+
+
+void test_transpose_non_symmetric_matrix_2_one_matrices() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8_test_2.txt";
+
+    int n = 1;
+    int x1 = 1;
+    int x2 = 10;
+
+    FILE* file = fopen(filename, "wb");
+
+    fwrite(&n, sizeof(int), 1, file);
+    fwrite(&x1, sizeof(int), 1, file);
+    fwrite(&x2, sizeof(int), 1, file);
+
+    fclose(file);
+
+    int res_n, res_x1, res_x2;
+    file = fopen(filename, "rb");
+
+    fread(&res_n, sizeof(int), 1, file);
+    fread(&res_x1, sizeof(int), 1, file);
+    fread(&res_x2, sizeof(int), 1, file);
+
+    fclose(file);
+
+    assert(res_n == n);
+    assert(res_x1 == x1);
+    assert(res_x2 == x2);
+}
+
+
+void test_transpose_non_symmetric_matrix_3_symmetric_matrix() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8_test_3.txt";
+
+    FILE* file = fopen(filename, "wb");
+
+    int n = 3;
+    matrix m = create_matrix_from_array((int[]) {1, 0, 0,
+                                                    0, 1, 0,
+                                                    0, 0, 1}, 3, 3);
+
+    fwrite(&n, sizeof(int), 1, file);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fwrite(&m.values[i][j], sizeof(int), 1, file);
+
+    fclose(file);
+
+    transpose_non_symmetric_matrix(filename);
+
+    file = fopen(filename, "rb");
+
+    int res_n;
+    fread(&res_n, sizeof(int), 1, file);
+    matrix res_m = get_mem_matrix(res_n, res_n);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fread(&res_m.values[i][j], sizeof(int), 1, file);
+
+    fclose(file);
+
+    assert(are_two_matrices_equal(&res_m, &m));
+
+    free_mem_matrix(&m);
+    free_mem_matrix(&res_m);
+}
+
+
+void test_transpose_non_symmetric_matrix_4_non_symmetric_matrix() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8_test_4.txt";
+
+    FILE* file = fopen(filename, "wb");
+
+    int n = 3;
+    matrix m = create_matrix_from_array((int[]) {1, 2, 3,
+                                                    4, 5, 6,
+                                                    7, 8, 9}, 3, 3);
+
+    fwrite(&n, sizeof(int), 1, file);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fwrite(&m.values[i][j], sizeof(int), 1, file);
+
+    fclose(file);
+
+    transpose_non_symmetric_matrix(filename);
+
+    file = fopen(filename, "rb");
+
+    int res_n;
+    fread(&res_n, sizeof(int), 1, file);
+    matrix res_m = get_mem_matrix(res_n, res_n);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fread(&res_m.values[i][j], sizeof(int), 1, file);
+
+    fclose(file);
+
+    matrix check = create_matrix_from_array((int[]) {1, 4, 7,
+                                                        2, 5, 8,
+                                                        3, 6, 9}, 3, 3);
+
+    assert(res_n == n);
+    assert(are_two_matrices_equal(&res_m, &check));
+
+    free_mem_matrix(&m);
+    free_mem_matrix(&res_m);
+    free_mem_matrix(&res_m);
+}
+
+
+void test_transpose_non_symmetric_matrix_5_mixed_matrix() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_8_test_5.txt";
+
+    FILE* file = fopen(filename, "wb");
+
+    int n = 3;
+    matrix m1 = create_matrix_from_array((int[]) {1, 0, 0,
+                                                     0, 1, 0,
+                                                     0, 0, 1}, 3, 3);
+
+    matrix m2 = create_matrix_from_array((int[]) {1, 2, 3,
+                                                     4, 5, 6,
+                                                     7, 8, 9}, 3, 3);
+
+    fwrite(&n, sizeof(int), 1, file);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fwrite(&m1.values[i][j], sizeof(int), 1, file);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fwrite(&m2.values[i][j], sizeof(int), 1, file);
+
+    fclose(file);
+
+    transpose_non_symmetric_matrix(filename);
+
+    file = fopen(filename, "rb");
+
+    int res_n;
+    matrix check1 = create_matrix_from_array((int[]) {1, 0, 0,
+                                                         0, 1, 0,
+                                                         0, 0, 1}, 3, 3);
+    matrix check2 = create_matrix_from_array((int[]) {1, 4, 7,
+                                                         2, 5, 8,
+                                                         3, 6, 9}, 3, 3);
+
+    fwrite(&res_n, sizeof(int), 1, file);
+
+    matrix res_m1 = get_mem_matrix(res_n, res_n);
+    matrix res_m2 = get_mem_matrix(res_n, res_n);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fwrite(&res_m1.values[i][j], sizeof(int), 1, file);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            fwrite(&res_m2.values[i][j], sizeof(int), 1, file);
+
+    fclose(file);
+
+    assert(res_n == n);
+    assert(are_two_matrices_equal(&res_m1, &check1));
+    assert(are_two_matrices_equal(&res_m2, &check2));
+
+    free_mem_matrix(&m1);
+    free_mem_matrix(&m2);
+    free_mem_matrix(&res_m1);
+    free_mem_matrix(&res_m2);
+    free_mem_matrix(&check1);
+    free_mem_matrix(&check2);
+}
+
+
+void test_transpose_non_symmetric_matrix() {
+    test_transpose_non_symmetric_matrix_1_empty_matrix();
+    test_transpose_non_symmetric_matrix_2_one_matrices();
+    test_transpose_non_symmetric_matrix_3_symmetric_matrix();
+    test_transpose_non_symmetric_matrix_4_non_symmetric_matrix();
+    test_transpose_non_symmetric_matrix_5_mixed_matrix();
 }
 
 #endif //CODE_TRANSPOSE_NON_SYMMETRIC_MATRIX_H

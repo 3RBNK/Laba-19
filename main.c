@@ -18,6 +18,7 @@ int main() {
     test_leave_longest();
     test_remove_true_polynomial();
     test_rearrange_numbers();
+    test_transpose_non_symmetric_matrix();
 
     return 0;
 }

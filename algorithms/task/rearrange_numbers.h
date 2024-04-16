@@ -138,7 +138,7 @@ void test_rearrange_numbers_2_only_negative_numbers() {
 
 
 void test_rearrange_numbers_3_only_positive_numbers() {
-    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_7_test_2.txt";
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_7_test_3.txt";
 
     int x1 = 1;
     int x2 = 2;
@@ -170,7 +170,7 @@ void test_rearrange_numbers_3_only_positive_numbers() {
 
 
 void test_rearrange_numbers_4_mixed_numbers() {
-    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_7_test_2.txt";
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_7_test_4.txt";
 
     int x1 = -1;
     int x2 = 2;
