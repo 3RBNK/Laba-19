@@ -20,6 +20,7 @@ int main() {
     test_rearrange_numbers();
     test_transpose_non_symmetric_matrix();
     test_get_best_team();
+    test_update_product();
 
     return 0;
 }
