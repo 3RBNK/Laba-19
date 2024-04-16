@@ -17,7 +17,7 @@ int compare_letters(const void* s1, const void* s2) {
 }
 
 void sort_word_letters(word_descriptor* word) {
-    qsort(word->begin, word->end - word->begin, sizeof(char), compare_letters);
+    qsort(word->begin, word->end - word->begin + 1, sizeof(char), compare_letters);
 }
 
 
@@ -73,11 +73,13 @@ void filter_word(const char* filename, char* source_word) {
     size_t length = ftell(file);
     fseek(file, 0, SEEK_SET);
 
-    fread(_string_buffer, 1, length, file);
+    if (length == 0)
+        return;
+
+    fread(_string_buffer, sizeof(char), length, file);
     _string_buffer[length] = '\0';
 
     fclose(file);
-
 
     word_descriptor word;
     get_word_without_space(source_word, &word);
@@ -89,11 +91,6 @@ void filter_word(const char* filename, char* source_word) {
         begin_search = words.words[words.size].end + 1;
         words.size++;
     }
-
-    for (int i = 0; i < words.size; i++)
-        print_word(words.words[i]);
-
-    printf("%lld\n", words.size);
 
     file = fopen(filename, "w");
     if (file == NULL) {
@@ -124,43 +121,54 @@ void test_filter_word_1_empty_file() {
     const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_4_test_1.txt";
 
     generate_string(filename, "");
-    filter_word(filename, "source");
+    char source_word[] = "source";
+    filter_word(filename, source_word);
 
     FILE* file = fopen(filename, "r");
-
-    char data[100] = "";
-    fgets(data, sizeof(data), file);
-
+    char data[10] = "";
+    fscanf(file, "%s", data);
     fclose(file);
 
-    char check[] = " ";
-
-    assert(strcmp_(data, check) == 0);
+    assert(strcmp_(data, "") == 0);
 }
 
 
-void test_filter_word_2_letters_not_in_string() {
+void test_filter_word_2_sequence_not_in_line() {
     const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_4_test_2.txt";
 
-    generate_string(filename, "source not in string");
-    filter_word(filename, "test");
+    generate_string(filename, "abcd ghtsdf");
+    char source_word[] = "seq";
+    filter_word(filename, source_word);
 
     FILE* file = fopen(filename, "r");
-
-    char data[100] = "";
-    fgets(data, sizeof(data), file);
-
+    char data[10] = "";
+    fscanf(file, "%s", data);
     fclose(file);
 
-    char check[] = " ";
+    assert(strcmp_(data, "") == 0);
+}
 
-    assert(strcmp_(data, check) == 0);
+
+void test_filter_word_3_sequence_in_line() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_4_test_3.txt";
+
+    generate_string(filename, "abcd word abc");
+    char source_word[] = "abc";
+    filter_word(filename, source_word);
+
+    FILE* file = fopen(filename, "r");
+    char data[40] = "";
+    fgets(data, sizeof(data), file);
+    fclose(file);
+
+    assert(strcmp_(data, "abcd abc ") == 0);
 }
 
 
 void test_filter_word() {
     test_filter_word_1_empty_file();
-    //test_filter_word_2_letters_not_in_string();
+    test_filter_word_2_sequence_not_in_line();
+    test_filter_word_3_sequence_in_line();
 }
 
 

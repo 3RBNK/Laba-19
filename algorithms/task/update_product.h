@@ -116,16 +116,15 @@ void update_product(const char* filename1, const char* filename2) {
         pushBackV(&v2, &od);
 
     for (size_t i = 0; i < v1.size; i++) {
+        product curr_pr;
+        getVectorValueV(&v1, i, &curr_pr);
         for (size_t j = 0; j < v2.size; j++) {
-            product curr_pr;
             order curr_od;
-
-            getVectorValueV(&v1, i, &curr_pr);
             getVectorValueV(&v2, j, &curr_od);
 
             if (strcmp_(curr_pr.product_name, curr_od.order_name) == 0) {
                 curr_pr.quantity = pr.quantity > od.quantity ? pr.quantity - od.quantity : 0;
-                curr_pr.total_cost = pr.unit_price * pr.quantity;
+                curr_pr.total_cost = pr.unit_price * curr_pr.quantity;
                 setVectorValueV(&v1, i, &curr_pr);
             }
         }
@@ -350,7 +349,7 @@ void test_update_product_5_order_less_product() {
 
     assert(strcmp_(pr2.product_name, res_pr2.product_name) == 0);
     assert(pr2.unit_price == res_pr2.unit_price);
-    assert(res_pr2.total_cost == 240);
+    assert(res_pr2.total_cost == 40);
     assert(res_pr2.quantity == 2);
 
     assert(strcmp_(od.order_name, res_od.order_name) == 0 && od.quantity == res_od.quantity);
