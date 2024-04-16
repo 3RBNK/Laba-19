@@ -17,6 +17,7 @@ int main() {
     //test_filter_word();
     test_leave_longest();
     test_remove_true_polynomial();
+    test_rearrange_numbers();
 
     return 0;
 }
