@@ -14,6 +14,8 @@ int main() {
     test_matrix_transpose();
     test_convert_float();
     test_evaluate();
+    //test_filter_word();
+    test_leave_longest();
 
     return 0;
 }

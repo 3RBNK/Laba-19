@@ -6,6 +6,7 @@
 #define CODE_FILTER_WORD_H
 
 #include <stdio.h>
+#include <assert.h>
 
 #include "../../data_structures/string/string_.h"
 #include "../../data_structures/string/task/letters_belong_string.h"
@@ -81,6 +82,8 @@ void filter_word(const char* filename, char* source_word) {
         words.size++;
     }
 
+    for (int i = 0; i < words.size; i++)
+        print_word(words.words[i]);
 
     file = fopen(filename, "w");
     if (file == NULL) {
@@ -105,6 +108,51 @@ void filter_word(const char* filename, char* source_word) {
 
     fclose(file);
 }
+
+
+void test_filter_word_1_empty_file() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_4_test_1.txt";
+
+    generate_string(filename, "");
+    filter_word(filename, "source");
+
+    FILE* file = fopen(filename, "r");
+
+    char data[100] = "";
+    fgets(data, sizeof(data), file);
+
+    fclose(file);
+
+    char check[] = " ";
+
+    assert(strcmp_(data, check) == 0);
+}
+
+
+void test_filter_word_2_letters_not_in_string() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_4_test_2.txt";
+
+    generate_string(filename, "source not in string");
+    filter_word(filename, "test");
+
+    FILE* file = fopen(filename, "r");
+
+    char data[100] = "";
+    fgets(data, sizeof(data), file);
+
+    fclose(file);
+
+    char check[] = " ";
+
+    assert(strcmp_(data, check) == 0);
+}
+
+
+void test_filter_word() {
+    //test_filter_word_1_empty_file();
+    test_filter_word_2_letters_not_in_string();
+}
+
 
 
 #endif //CODE_FILTER_WORD_H
