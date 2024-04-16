@@ -11,7 +11,7 @@
 
 
 int compare_letters(const void* s1, const void* s2) {
-    return *(char *) s1 - *(char *) s2;
+    return *(const unsigned char*) s1 - *(const unsigned char*) s2;
 }
 
 void sort_word_letters(word_descriptor* word) {

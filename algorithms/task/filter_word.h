@@ -10,7 +10,15 @@
 
 #include "../../data_structures/string/string_.h"
 #include "../../data_structures/string/task/letters_belong_string.h"
-#include "../../data_structures/string/task/find_anagram_words.h"
+
+
+int compare_letters(const void* s1, const void* s2) {
+    return *(const unsigned char*) s1 - *(const unsigned char*) s2;
+}
+
+void sort_word_letters(word_descriptor* word) {
+    qsort(word->begin, word->end - word->begin, sizeof(char), compare_letters);
+}
 
 
 bool letters_belong_word(word_descriptor sub_word, word_descriptor word) {
@@ -85,6 +93,8 @@ void filter_word(const char* filename, char* source_word) {
     for (int i = 0; i < words.size; i++)
         print_word(words.words[i]);
 
+    printf("%lld\n", words.size);
+
     file = fopen(filename, "w");
     if (file == NULL) {
         printf("reading error\n");
@@ -149,8 +159,8 @@ void test_filter_word_2_letters_not_in_string() {
 
 
 void test_filter_word() {
-    //test_filter_word_1_empty_file();
-    test_filter_word_2_letters_not_in_string();
+    test_filter_word_1_empty_file();
+    //test_filter_word_2_letters_not_in_string();
 }
 
 

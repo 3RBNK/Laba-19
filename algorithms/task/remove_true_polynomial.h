@@ -121,4 +121,96 @@ void print_polynomial(const char* filename) {
 }
 
 
+void test_remove_true_polynomial_1_empty_file() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_6_test_1.txt";
+
+    FILE* file = fopen(filename, "wb");
+    fclose(file);
+
+    remove_true_polynomial(filename, 1.0);
+
+    file = fopen(filename, "rb");
+
+    char data[10] = "";
+    fscanf(file, "%s", data);
+
+    fclose(file);
+
+    assert(strcmp_(data, "") == 0);
+}
+
+
+void test_remove_true_polynomial_2_not_true_expression() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_6_test_2.txt";
+
+    double x = 2.0;
+    monomial x_2 = {.coefficient = 1.0, .degree = 2};
+    monomial x_1 = {.coefficient = -2.0, .degree = 1};
+    monomial c = {.coefficient = 1.0, .degree = 0};
+
+    FILE* file = fopen(filename, "wb");
+
+    fwrite(&x_2, sizeof(monomial), 1, file);
+    fwrite(&x_1, sizeof(monomial), 1, file);
+    fwrite(&c, sizeof(monomial), 1, file);
+
+    fclose(file);
+
+    remove_true_polynomial(filename, x);
+
+
+    file = fopen(filename, "rb");
+
+    monomial res_x_2;
+    fread(&res_x_2, sizeof(monomial), 1, file);
+
+    monomial res_x_1;
+    fread(&res_x_1, sizeof(monomial), 1, file);
+
+    monomial res_c;
+    fread(&res_c, sizeof(monomial), 1, file);
+
+    fclose(file);
+
+    assert(x_2.coefficient - res_x_2.coefficient <= 0.0001 && x_2.degree == res_x_2.degree);
+    assert(x_1.coefficient - res_x_1.coefficient <= 0.0001 && x_1.degree == res_x_1.degree);
+    assert(c.coefficient - res_c.coefficient <= 0.0001 && c.degree == res_c.degree);
+}
+
+
+void test_remove_true_polynomial_3_true_expression() {
+    const char filename[] = "C:\\Users\\Kirill\\Desktop\\laba_op_19\\task_6_test_3.txt";
+
+    double x = 1.0;
+    monomial x_2 = {.coefficient = 1.0, .degree = 2};
+    monomial x_1 = {.coefficient = -2.0, .degree = 1};
+    monomial c = {.coefficient = 1.0, .degree = 0};
+
+    FILE* file = fopen(filename, "wb");
+
+    fwrite(&x_2, sizeof(monomial), 1, file);
+    fwrite(&x_1, sizeof(monomial), 1, file);
+    fwrite(&c, sizeof(monomial), 1, file);
+
+    fclose(file);
+
+    remove_true_polynomial(filename, x);
+
+    file = fopen(filename, "rb");
+
+    char data[10] = "";
+    fscanf(file, "%s", data);
+
+    fclose(file);
+
+    assert(strcmp_(data, "") == 0);
+}
+
+
+void test_remove_true_polynomial() {
+    test_remove_true_polynomial_1_empty_file();
+    test_remove_true_polynomial_2_not_true_expression();
+    test_remove_true_polynomial_3_true_expression();
+}
+
 #endif //CODE_REMOVE_TRUE_POLYNOMIAL_H
